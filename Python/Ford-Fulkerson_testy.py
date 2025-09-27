@@ -1,7 +1,7 @@
 import unittest
-from Projekt import Graf
-from Projekt import Wezel
-from Projekt import Krawedz
+from Ford-Fulkerson import Graf
+from Ford-Fulkerson  import Wezel
+from Ford-Fulkerson  import Krawedz
 
 
 class TestGraf(unittest.TestCase):
