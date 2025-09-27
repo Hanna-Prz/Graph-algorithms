@@ -1,0 +1,54 @@
+Dokumentacja projektu - Algorytm Forda-Fulkersona
+1. Wprowadzenie
+Celem projektu jest implementacja algorytmu Forda-Fulkersona do obliczania maksymalnego przepływu w grafie przepływowym. Dodatkowo, projekt zawiera wizualizację grafu, z uwzględnieniem minimalnych odległości między wierzchołkami i krawędziami.
+
+2. Algorytm Forda-Fulkersona
+Algorytm Forda-Fulkersona jest jednym z klasycznych algorytmów w teorii grafów, służącym do znajdowania maksymalnego przepływu od źródła do ujścia w grafie skierowanym. Wykorzystuje podejście iteracyjne, opierając się na znajdowaniu ścieżek powiększających przepływ (ang. augmenting paths) i ich aktualizowaniu.
+Kroki algorytmu:
+    1. Inicjalizacja: Ustaw początkowy przepływ w grafie na 0.
+    2. DFS: Znajdź ścieżkę powiększającą od źródła do ujścia, na której przepustowość jest dodatnia.
+    3. Zaktualizuj przepływ:
+        ◦ Dodaj minimalny przepływ (możliwy na tej ścieżce) do całkowitego przepływu.
+        ◦ Zaktualizuj przepływy na ścieżce i krawędziach odwrotnych.
+    4. Powtarzaj kroki 2-3, dopóki istnieje ścieżka powiększająca.
+Złożoność czasowa:
+    • Złożoność zależy od liczby wierzchołków V, krawędzi E, i maksymalnego przepływu F: O(E⋅F), gdzie F to maksymalny przepływ.
+
+3. Struktura projektu
+Klasy
+    1. Krawedz:
+        ◦ Reprezentuje krawędź w grafie.
+        ◦ Atrybuty:
+            ▪ przepustowosc: Maksymalna przepustowość krawędzi.
+            ▪ przepustowosc_odwrotna: Przepustowość odwrotna dla przepływów w przeciwnym kierunku.
+        ◦ Metody:
+            ▪ zmien_przepustowosc_odwrotna: Aktualizuje przepustowość odwrotną.
+    2. Wezel:
+        ◦ Reprezentuje węzeł w grafie.
+        ◦ Atrybuty:
+            ▪ nazwa: Nazwa węzła.
+            ▪ krawedzie: Lista wychodzących krawędzi.
+        ◦ Metody:
+            ▪ dodaj_krawedz: Dodaje krawędź do węzła.
+    3. Graf:
+        ◦ Reprezentuje cały graf przepływowy.
+        ◦ Atrybuty:
+            ▪ wezly: Słownik węzłów (nazwa -> obiekt Wezel).
+            ▪ krawedzie: Lista wszystkich krawędzi.
+        ◦ Metody:
+            ▪ dodaj_wezel: Dodaje nowy węzeł.
+            ▪ dodaj_krawedz: Dodaje krawędź między dwoma węzłami.
+            ▪ dfs: Znajduje ścieżkę powiększającą (rekurencyjnie).
+            ▪ ford_fulkerson: Implementuje algorytm Forda-Fulkersona.
+            ▪ wizualizuj_graf: Wizualizuje graf z minimalną odległością między wierzchołkami.
+
+4. Wizualizacja grafu
+Graf jest wizualizowany za pomocą biblioteki networkx i matplotlib.
+Funkcja wizualizująca:
+    • Rozmieszcza węzły w przestrzeni z zapewnieniem minimalnej odległości.
+    • Wyświetla krawędzie z opisami ich przepustowości.
+
+5. Jak wykonać program
+Kroki:
+    1. Upewnij się, że masz zainstalowane wymagane biblioteki:
+    2. Podaj w kodzie wszystkie krawędzie wraz z wierzchołkami oraz przepustowością
