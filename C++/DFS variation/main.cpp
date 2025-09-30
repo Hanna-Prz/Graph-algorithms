@@ -15,9 +15,9 @@ struct Result {
 void dfs(const Graf& g, int current, vector<int>& path, vector<bool>& visited, int current_cost, int& min_total_cost, vector<int>& best_path) {
     if (path.size() > 1 && current == 1) {
         // zamknięty cykl do 1
-        int min_clo = g.koszt[path[0] - 1];
+        int min_clo = g.cost[path[0] - 1];
         for (int v : path) {
-            min_clo = min(min_clo, g.koszt[v - 1]);
+            min_clo = min(min_clo, g.cost[v - 1]);
         }
         int total = current_cost + (min_clo / 2);
 
