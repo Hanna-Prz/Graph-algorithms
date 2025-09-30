@@ -8,18 +8,18 @@
 using namespace std;
 
 
-struct PUNKT {
+struct POINT {
     int x, y;
 };
 
 
-bool comparePoints(const PUNKT &a, const PUNKT &b) {
+bool comparePoints(const POINT &a, const POINT &b) {
     if (a.x == b.x) return a.y < b.y;
     return a.x < b.x;
 }
 
 
-int binarySearchLower(const vector<PUNKT> &points, int target, int low, int high) {
+int binarySearchLower(const vector<POINT> &points, int target, int low, int high) {
     while (low <= high) {
         int mid = low + (high - low) / 2;
         if (points[mid].x >= target) {
@@ -32,7 +32,7 @@ int binarySearchLower(const vector<PUNKT> &points, int target, int low, int high
 }
 
 
-int binarySearchUpper(const vector<PUNKT> &points, int target, int low, int high) {
+int binarySearchUpper(const vector<POINT> &points, int target, int low, int high) {
     while (low <= high) {
         int mid = low + (high - low) / 2;
         if (points[mid].x <= target) {
@@ -45,7 +45,7 @@ int binarySearchUpper(const vector<PUNKT> &points, int target, int low, int high
 }
 
 
-int maxPointsInRectangle(const vector<PUNKT> &points, int w, int h) {
+int maxPointsInRectangle(const vector<POINT> &points, int w, int h) {
     int n = points.size();
     int max_count = 0;
 
@@ -88,7 +88,7 @@ int main() {
 
     inputFile >> w >> h >> n;
 
-    vector<PUNKT> points(n);
+    vector<POINT> points(n);
     for (int i = 0; i < n; ++i) {
         inputFile >> points[i].x >> points[i].y;
     }
