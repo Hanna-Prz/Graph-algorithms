@@ -10,24 +10,24 @@ class Graf {
 public:
     int matrix[1000][1000] = {};
     int numberOfVertices = 0;
-    int koszt[1000] = {};
+    int cost[1000] = {};
     int numberOfMetals = 0;
 
     Graf() {}
 
-    void createVertices(int ile) {
-        if (ile >= 0 && ile < 1000) {
-            numberOfVertices = max(numberOfVertices, ile + 1);
+    void createVertices(int much) {
+        if (much >= 0 && much < 1000) {
+            numberOfVertices = max(numberOfVertices, much + 1);
         }
     }
 
-    void metale(int ile) {
-        numberOfMetals = ile;
+    void metals(int much) {
+        numberOfMetals = much;
     }
 
-    void addEdge(int v1, int v2, int waga) {
+    void addEdge(int v1, int v2, int importance) {
         if (v1 >= 0 && v1 < 1000 && v2 >= 0 && v2 < 1000) {
-            matrix[v1][v2] = waga; // graf skierowany
+            matrix[v1][v2] = importance; // graf skierowany
             numberOfVertices = max(numberOfVertices, max(v1 + 1, v2 + 1));
         }
     }
@@ -57,18 +57,18 @@ public:
             return;
         }
 
-        int ile, v1, v2, waga, ko, met;
+        int much, v1, v2, importance, ko, met;
         file >> met;
-        metale(met);
+        metals(met);
         for (int i = 0; i < met; i++) {
             file >> ko;
-            koszt[i] = ko;
+            cost[i] = ko;
         }
 
-        file >> ile;
-        createVertices(ile);
-        while (file >> v1 >> v2 >> waga) {
-            addEdge(v1, v2, waga);
+        file >> much;
+        createVertices(much);
+        while (file >> v1 >> v2 >> importance) {
+            addEdge(v1, v2, importance);
         }
 
         file.close();
