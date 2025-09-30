@@ -1,35 +1,35 @@
 #include <iostream>
-#include "graf.cpp"
+#include "graph.cpp"
 #include <queue>
 using namespace std;
 
 int tab[1000][2] = {0};
 
-void sprawdz_ile_krawedzi_wychodzi(int wierzcholek, int maks, Graf *G, int t[][2]) {
-    int wynik = 0;
-    for (int i = 0; i < maks; i++) {
-        if (G->checkEdge(i,wierzcholek)) {
-            wynik++;
+void check_how_many_edges_come_out(int vertex, int max, Graph *G, int t[][2]) {
+    int result = 0;
+    for (int i = 0; i < max; i++) {
+        if (G->checkEdge(i,vertex)) {
+            result++;
         }
     }
-    t[wierzcholek][0] = wynik;
+    t[vertex][0] = result;
 }
 
-int wierzcholek_0(int maks, Graf *G, int t[][2]) {
+int vertex_0(int max, Graph *G, int t[][2]) {
     int k = 0;
     //int h = 0;
-    int wynik = 0;
+    int result = 0;
 
-        for (int i = 1; i < maks; i++) {
+        for (int i = 1; i < max; i++) {
 
             if (t[i][0] == 0 && t[i][1] == 1) {
                 t[i][1] = 0;
-                for (int k = 0; k < maks; k++) {
+                for (int k = 0; k < max; k++) {
                     G->removeEdge(i,k);
                     G->removeEdge(k,i);
                 }
-                for (int j = 0; j < maks; j++) {
-                    sprawdz_ile_krawedzi_wychodzi(j, maks, G, t);
+                for (int j = 0; j < max; j++) {
+                    check_how_many_edges_come_out(j, max, G, t);
                 }
 
                 //return i;
@@ -41,29 +41,29 @@ int wierzcholek_0(int maks, Graf *G, int t[][2]) {
             //h++;
         }
 
-        if (k == maks ) {
+        if (k == max ) {
             return 0;
         }
         else{
-            wynik ++;
+            result ++;
         }
 
 
 
-    return wynik;
+    return result;
 }
 
 
-return cykle(Graf * G){
-    queue<int> lista;
-    przygotuj();
-    int liczba = G->vertexList.size();
-    for (int i = 0; i < liczba; i++) {
-        sprawdz_ile_krawedzi_wychodzi(i, liczba, G, tab);
+return cycles(Graph * G){
+    queue<int> list;
+    prepare();
+    int number = G->vertexList.size();
+    for (int i = 0; i < number; i++) {
+        check_how_many_edges_come_out(i, number, G, tab);
     }
     int j = 0;
     while (j >= 0) {
-        j = wierzcholek_0(liczba, G, tab);
+        j =vertex_0(number, G, tab);
     }
 
     if (j == -1) {
@@ -74,7 +74,7 @@ return cykle(Graf * G){
     }
 }
 
-void przygotuj(){
+void prepare(){
     for (int i = 0; i < 1000; i++) {
         tab[i][1] = 1;
     }
