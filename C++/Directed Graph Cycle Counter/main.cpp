@@ -10,12 +10,12 @@
 
 using namespace std;
 
-class Graf {
+class Graph {
 
 
 public:
     vector<vector<edge>> vertexList; // Lista sąsiedztwa
-    Graf() {}
+    Graph() {}
 
     void createVertices(int ile) {
         if (ile >= vertexList.size()) {
@@ -102,10 +102,10 @@ public:
             return;
         }
 
-        int index1, index2, ile;
-        file >> ile;
+        int index1, index2, much;
+        file >> much;
 
-        for (int i = 0; i < ile; i++) {
+        for (int i = 0; i < much; i++) {
             file >> index1;
             index1--;
             addEdge(index1, i);
